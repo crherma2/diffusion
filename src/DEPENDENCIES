@@ -1,0 +1,3 @@
+main.o: timing.o
+
+timing.o: constants.o

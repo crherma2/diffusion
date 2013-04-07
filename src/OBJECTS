@@ -1,0 +1,4 @@
+objects = \
+constants.o \
+main.o \
+timing.o

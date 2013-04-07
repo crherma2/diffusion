@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<template>
+
+  <options rootname="input" />
+
+  <typedef name="geometry_xml">
+    <component name="nx" type="integer" />
+    <component name="ny" type="integer" />
+    <component name="nz" type="integer" />
+    <component name="ng" type="integer" />
+    <component name="mat" type="integer-array" />
+    <component name="reg" type="integer-array" />
+    <component name="xgrid" type="integer-array" />
+    <component name="ygrid" type="integer-array" />
+    <component name="zgrid" type="integer-array" /> 
+    <component name="nnx" type="integer-array" />
+    <component name="nny" type="integer-array" />
+    <component name="nnz" type="integer-array" />
+    <component name="bc" type="double-array" />
+  </typedef>
+
+  <typedef name="material_xml">
+    <component name="uid" type="integer" />
+    <component name="totalxs" type="double-array" />
+    <component name="scattxs" type="double-array" />
+    <component name="absxs" type="double-array" />
+    <component name="remxs" type="double-array" />
+    <component name="nfissxs" type="double-array" />
+    <component name="diffcoef" type="double-array" />
+    <component name="chi" type="double-array" />
+  </typedef>
+
+  <variable name="geometry_" tag="geometry" type="geometry_xml" />
+  <variable name="material_" tag="material" type="material_xml" dimension="1" />
+  <variable name="ktol_"     tag="ktol"     type="double" default="1.e-8" />
+  <variable name="stol_"     tag="stol"     type="double" default="1.e-6" />
+  <variable name="itol_"     tag="itol"     type="double" default="1.e-10" />
+  <variable name="guess_"    tag="guess"    type="word" length="50" default="'flat'" />
+
+</template>
