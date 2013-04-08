@@ -4,7 +4,7 @@ templates = $(wildcard templates/*.o)
 xml_fort = xml-fortran/xmlparse.o \
            xml-fortran/read_xml_primitives.o \
            xml-fortran/write_xml_primitives.o
-gnuplt   = gnuplot/gnufor2.o
+slatec = $(wildcard slatec/*.o)
 
 #===============================================================================
 # Object Files
@@ -56,20 +56,27 @@ ifeq ($(COMPILER),gnu)
 endif
 
 #===============================================================================
+# Slatec
+#===============================================================================
+
+LDFLAGS += -L slatec -lslatec
+
+#===============================================================================
 # Targets
 #===============================================================================
 
-all: xml-fortran $(program)
+all: xml-fortran slatec $(program)
 xml-fortran:
-	cd xml-fortran; make MACHINE=$(MACHINE) F90=$(F90) F90FLAGS="$(F90FLAGS)"
+	cd xml-fortran; make F90=$(F90) F90FLAGS="$(F90FLAGS)"
 	cd templates; make F90=$(F90) F90FLAGS="$(F90FLAGS)"
-gnuplot:
-	cd gnuplot; make F90=$(F90) F90FLAGS="$(F90FLAGS)"
+slatec:
+	cd slatec; make MACHINE=$(MACHINE) F90=$(F90) F90FLAGS="$(F90FLAGS)"
 $(program): $(objects)
 	$(F90) $(objects) $(templates) $(xml_fort) -o $@ $(LDFLAGS)
 distclean: clean
 	cd xml-fortran; make clean
 	cd templates; make clean
+	cd slatec; make clean
 clean:
 	@rm -f *.o *.mod $(program)
 neat:
@@ -80,10 +87,10 @@ neat:
 #===============================================================================
 
 .SUFFIXES: .F90 .o
-.PHONY: all xml-fortran clean neat distclean 
+.PHONY: all xml-fortran clean neat distclean slatec 
 
 %.o: %.F90
-	$(F90) $(F90FLAGS) -DGIT_SHA1="\"$(GIT_SHA1)\"" -Ixml-fortran -Itemplates -Ignuplot -c $<
+	$(F90) $(F90FLAGS) -DGIT_SHA1="\"$(GIT_SHA1)\"" -Ixml-fortran -Itemplates -Islatec -c $<
 
 #===============================================================================
 # Dependencies

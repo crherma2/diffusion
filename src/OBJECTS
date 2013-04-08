@@ -1,4 +1,5 @@
 objects = \
 constants.o \
 main.o \
+matrix.o \
 timing.o
