@@ -3,6 +3,7 @@
 *.mod
 *.log
 *.out
+*.a
 
 # Compiler python objects
 *.pyc
