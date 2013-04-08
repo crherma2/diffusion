@@ -1,5 +1,6 @@
 objects = \
 constants.o \
+geometry_header.o \
 global.o \
 main.o \
 matrix.o \
