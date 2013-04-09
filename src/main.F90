@@ -1,8 +1,9 @@
 program main
 
 !-references
-
-  use matrix,  only: test_matrix
+  
+  use initialize, only: initialize_run
+  use matrix,     only: test_matrix
 
 !-program options
 
@@ -11,5 +12,7 @@ program main
 !-begin execution
 
   call test_matrix()
+  ! initialize input
+  call initialize_run()  
 
 end program main

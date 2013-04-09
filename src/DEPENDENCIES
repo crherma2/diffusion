@@ -1,5 +1,10 @@
 global.o: geometry_header.o
+global.o: material_header.o
 
+intialize.o: geometry_header.o
+intialize.o: global.o
+
+main.o: intialize.o
 main.o: matrix.o
 main.o: timing.o
 
