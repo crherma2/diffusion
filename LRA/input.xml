@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<input>
+
+<!-- Definition of Geometry -->
+  <geometry>
+    <nx>6</nx>
+    <ny>6</ny>
+    <ng>2</ng>
+    <mat>
+         2 1 2 3 3 5
+         1 1 1 3 3 5
+         2 1 2 3 3 5
+         3 3 3 4 5 5
+         3 3 3 5 5 5
+         5 5 5 5 5 5
+    </mat>
+    <xgrid>15 60 30 15 15 30</xgrid>
+    <ygrid>15 60 30 15 15 30</ygrid>
+    <nnx>15 60 30 15 15 30</nnx>
+    <nny>15 60 30 15 15 30</nny>
+    <bc> 1.0 0.0 1.0 0.0 1.0 1.0 </bc>
+  </geometry>
+
+<!-- Defition of Materials -->
+  <material uid="1">
+    <scattxs> 0.0 0.02533 0.0 0.0 </scattxs>
+    <nfissxs> 0.004602 0.1091 </nfissxs>
+    <chi> 1.0 0.0 </chi>
+    <diffcoef> 1.255 0.211 </diffcoef>
+  </material>
+
+  <material uid="2">
+    <scattxs> 0.0 0.02767 0.0 0.0 </scattxs>
+    <nfissxs> 0.004609 0.08675 </nfissxs>
+    <chi> 1.0 0.0 </chi>
+    <diffcoef> 1.268 0.1902 </diffcoef>
+  </material>
+
+  <material uid="3">
+    <scattxs> 0.0 0.02617 0.0 0.0 </scattxs>
+    <nfissxs> 0.004663 0.1021 </nfissxs>
+    <chi> 1.0 0.0 </chi>
+    <diffcoef> 1.259 0.2091 </diffcoef>
+  </material>
+
+  <material uid="4">
+    <scattxs> 0.0 0.02617 0.0 0.0 </scattxs>
+    <nfissxs> 0.004663 0.1021 </nfissxs>
+    <chi> 1.0 0.0 </chi>
+    <diffcoef> 1.259 0.2091 </diffcoef>
+  </material>
+
+  <material uid="5">
+    <scattxs> 0.0 0.04754 0.0 0.0 </scattxs>
+    <nfissxs> 0.0 0.0 </nfissxs>
+    <chi> 1.0 0.0 </chi>
+    <diffcoef> 1.257 0.1592 </diffcoef>
+  </material>
+
+</input>
