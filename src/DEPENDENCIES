@@ -3,4 +3,6 @@ global.o: geometry_header.o
 main.o: matrix.o
 main.o: timing.o
 
+matrix.o: linearsolver.o
+
 timing.o: constants.o

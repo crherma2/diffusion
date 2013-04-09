@@ -8,6 +8,10 @@ contains
 
   subroutine test_matrix()
 
+!---references
+
+    use linearsolver,  only: gmres
+
 !---local variables
 
     integer :: N=3    ! order of matrix
@@ -18,13 +22,7 @@ contains
     real(8) :: b(3)   ! right hand side vector
     real(8) :: x(3)   ! solution vector
     real(8) :: tol = 1.e-10_8 ! linear tolerance of GMRES solver
-    integer :: iter ! number of iterations that GMRES took
-    real(8) :: err ! final error
-    integer :: ierr ! error code
-    real(8), allocatable :: rwork(:) ! working vector for real
-    integer :: lenw ! length of rwork
-    integer, allocatable :: iwork(:) ! work vector for integer
-    integer :: leniw ! length of iwork
+    integer :: iter=100 ! number of iterations that GMRES took
 
 !---begin execution
 
@@ -64,23 +62,12 @@ contains
     ! guess answer
     x = 1.0_8
 
-    ! create temp working vectors for GMRES (see dslugm.f for details)
-    lenw = 131 + 18*N + NNZ
-    leniw = 32 + 5*N + NNZ
-    allocate(rwork(lenw))
-    allocate(iwork(leniw))
+    ! solve matrix
+    call gmres(N, NNZ, row, col, val, x, b, tol, iter)
 
-    ! solve matrix with GMRES
-    call DSLUGM(N, b, x, NNZ, row, col, val, 0, 3, 0, tol, 100, iter, &
-                err, ierr, 0, rwork, lenw, iwork, leniw)
-    print *, iter,err,ierr
     ! print answer
     print *, 'Solution is:'
     print *, x
-
-    ! return allocated memory
-    deallocate(rwork)
-    deallocate(iwork)
 
   end subroutine test_matrix
 

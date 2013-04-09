@@ -2,6 +2,7 @@ objects = \
 constants.o \
 geometry_header.o \
 global.o \
+linearsolver.o \
 main.o \
 matrix.o \
 timing.o
