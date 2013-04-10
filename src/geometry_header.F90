@@ -30,6 +30,9 @@ module geometry_header
     real(8), allocatable :: dx(:)  ! x-direction
     real(8), allocatable :: dy(:)  ! y-direction
 
+    ! boundary conditions
+    real(8) :: bc(4) = 1.0_8 ! default is reflective
+
   end type geometry_type
 
 contains 
