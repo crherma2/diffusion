@@ -23,6 +23,7 @@
 
 <!-- Defition of Materials -->
   <material uid="1">
+    <totalxs> 0.0337075 0.1003211 </totalxs>
     <scattxs> 0.0 0.02533 0.0 0.0 </scattxs>
     <nfissxs> 0.004602 0.1091 </nfissxs>
     <chi> 1.0 0.0 </chi>
@@ -30,6 +31,7 @@
   </material>
 
   <material uid="2">
+    <totalxs> 0.0349778 0.07048902 </totalxs>
     <scattxs> 0.0 0.02767 0.0 0.0 </scattxs>
     <nfissxs> 0.004609 0.08675 </nfissxs>
     <chi> 1.0 0.0 </chi>
@@ -37,6 +39,7 @@
   </material>
 
   <material uid="3">
+    <totalxs> 0.0342979 0.08346091 </totalxs>
     <scattxs> 0.0 0.02617 0.0 0.0 </scattxs>
     <nfissxs> 0.004663 0.1021 </nfissxs>
     <chi> 1.0 0.0 </chi>
@@ -44,6 +47,7 @@
   </material>
 
   <material uid="4">
+    <totalxs> 0.0342979 0.07334491 </totalxs>
     <scattxs> 0.0 0.02617 0.0 0.0 </scattxs>
     <nfissxs> 0.004663 0.1021 </nfissxs>
     <chi> 1.0 0.0 </chi>
@@ -51,6 +55,7 @@
   </material>
 
   <material uid="5">
+    <totalxs> 0.0482691 0.01912592 </totalxs>
     <scattxs> 0.0 0.04754 0.0 0.0 </scattxs>
     <nfissxs> 0.0 0.0 </nfissxs>
     <chi> 1.0 0.0 </chi>
