@@ -18,6 +18,10 @@ module geometry_header
     ! number of fine mesh per coarse mesh
     integer, allocatable :: nnx(:)  ! x-direction
     integer, allocatable :: nny(:)  ! y-direction
+   
+    ! total number fine meshes
+    integer :: nx ! x-direction
+    integer :: ny ! y-direction
     
     ! width of course mesh regions
     real(8), allocatable :: gridx(:)

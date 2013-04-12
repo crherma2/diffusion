@@ -49,6 +49,10 @@ contains
     geometry % nnx = geometry_ % nnx
     geometry % nny = geometry_ % nny
 
+    ! calculate the total number of fine mesh
+    geometry % nx = sum(geometry_ % nnx)
+    geometry % ny = sum(geometry_ % nny)
+   
     ! read in coarse mesh regions
     geometry % gridx = geometry_ % xgrid
     geometry % gridy = geometry_ % ygrid

@@ -4,6 +4,7 @@ geometry_header.o \
 global.o \
 initialize.o \
 linearsolver.o \
+loss.o \
 main.o \
 material_header.o \
 matrix_header.o \
