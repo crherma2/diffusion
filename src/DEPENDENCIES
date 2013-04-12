@@ -5,6 +5,8 @@ global.o: matrix_header.o
 intialize.o: geometry_header.o
 intialize.o: global.o
 
+loss.o: global.o
+
 main.o: intialize.o
 main.o: matrix.o
 main.o: timing.o
