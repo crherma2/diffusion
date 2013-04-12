@@ -25,6 +25,7 @@ contains
     use global, only: geometry
     use global, only: loss_matrix
     use matrix_header, only: allocate_matrix
+
 !---arguments
     
     integer :: n_i  ! number of interior cells
@@ -56,7 +57,8 @@ contains
   subroutine build_lossmatrix()
 
     use global, only: loss_matrix
-
+    use global, only: geometry
+    use geometry_header, only: get_materialid
 !---arguments
 
     integer :: irow ! loop around rows
@@ -64,6 +66,7 @@ contains
     integer :: i ! iteration counter for x
     integer :: j ! iteration coutner for y
     integer :: g ! iteration counter for groups
+    integer :: matid ! material identification
    
 !---begin execution
     
@@ -75,6 +78,8 @@ contains
  
       ! call matrix to indice code below           
       call matrix_to_indices(irow,i,j,g)
+      call get_materialid(geometry,i,j,matid)
+      PRINT*, matid 
       PRINT*, irow, i, j, g
 
     end do 
