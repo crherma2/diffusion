@@ -8,6 +8,7 @@ intialize.o: global.o
 loss.o: global.o
 
 main.o: intialize.o
+main.o: loss.o
 main.o: matrix.o
 main.o: timing.o
 
