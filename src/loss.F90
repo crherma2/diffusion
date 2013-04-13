@@ -217,7 +217,7 @@ contains
         !put the inscattering terms in matrix
         loss_matrix % row(counter) = irow
         loss_matrix % col(counter) = colidx
-        loss_matrix % val(counter) = -m % xs_scat(h,g)    
+        loss_matrix % val(counter) = -m % xs_scat(g,h)    
         counter = counter + 1
                          
       end do INSCATTER
