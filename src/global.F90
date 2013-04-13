@@ -13,7 +13,7 @@ module global
 !-variables
 
   type(geometry_type) :: geometry 
-  type(material_type), allocatable :: material(:)
+  type(material_type), allocatable, target :: material(:)
   type(matrix_type) :: loss_matrix
   type(matrix_type) :: prod_matrix
 

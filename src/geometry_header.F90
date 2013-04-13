@@ -4,7 +4,7 @@ module geometry_header
 
   implicit none
   private
-  public :: allocate_geom, deallocate_geom, get_materialid
+  public :: allocate_geom, deallocate_geom, get_coarsemesh
 
 !-module variables
 
@@ -79,22 +79,21 @@ contains
 
   end subroutine deallocate_geom   
 
-  subroutine get_materialid(self,i,j,matid)
+  subroutine get_coarsemesh(self,i,j,ic,jc)
 
 !---arguments
 
     integer :: i ! read in x indice
     integer :: j ! read in y indce
-    integer :: matid ! material identification
+    integer :: ic ! determine which mesh is in for x
+    integer :: jc ! determine which mesh is in for y
     type(geometry_type) :: self ! for use of variables in above file
     
 !---local variables
    
     integer :: icor ! loop counter for x
     integer :: jcor ! loop counter for y
-    integer :: ic ! determine which mesh is in for x
-    integer :: jc ! determine which mesh is in for y
-
+   
 !---begin execution
 
     ! loop around the fine mesh
@@ -112,9 +111,6 @@ contains
       end if
     end do
 
-    ! determine the material identification
-    matid = self % cmat(ic,jc)
- 
-  end subroutine get_materialid
+  end subroutine get_coarsemesh
 
 end module geometry_header
