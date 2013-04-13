@@ -69,6 +69,7 @@ contains
     integer :: i ! index for x
     integer :: j ! index for y
     integer :: g ! index for groups
+    integer :: h ! do loop for groups
     integer :: colidx ! index for column
     integer :: matid ! material identification
     integer :: nmatid ! neighbor material indentification
@@ -203,9 +204,26 @@ contains
       loss_matrix % row(counter) = irow
       loss_matrix % col(counter) = irow
       loss_matrix % val(counter) = diag
+      counter = counter + 1
+ 
+      ! get the inscattering term
+      INSCATTER: do h = 1, geometry % ng
+
+        if (h == g) cycle    
+
+        ! getting column identification
+        call indices_to_matrix(i,j,h,colidx)
+        
+        !put the inscattering terms in matrix
+        loss_matrix % row(counter) = irow
+        loss_matrix % col(counter) = colidx
+        loss_matrix % val(counter) = -m % xs_scat(h,g)    
+        counter = counter + 1
+                         
+      end do INSCATTER
   
     end do ROWS 
-    
+    PRINT*,'counter', counter 
   end subroutine build_lossmatrix
 
   subroutine matrix_to_indices(irow,i,j,g)
