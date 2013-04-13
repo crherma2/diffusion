@@ -197,8 +197,13 @@ contains
       end do LEAK  
 
       ! get rest of diagonal terms
-         
+      diag = diag + m % xs_tot(g) - m % xs_scat(g,g)   
 
+      ! put diagonal term into matrix
+      loss_matrix % row(counter) = irow
+      loss_matrix % col(counter) = irow
+      loss_matrix % val(counter) = diag
+  
     end do ROWS 
     
   end subroutine build_lossmatrix
