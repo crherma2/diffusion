@@ -41,9 +41,9 @@ contains
     n_s = 2*(geometry % nx+geometry % ny)-8       ! defined number of sides
     n_i = geometry % nx*geometry % ny-(n_c+n_S) ! define # of interiors
     
-    nz_c = geometry % ng*2*n_c*(3+geometry % ng-1) ! define # nonzero corners
-    nz_s = geometry % ng*3*n_s*(4+geometry % ng-1) ! define # nonzero sides
-    nz_i = geometry % ng*4*n_i*(5+geometry % ng-1) ! define # nonzero interiors
+    nz_c = geometry % ng*n_c*(3+geometry % ng-1) ! define # nonzero corners
+    nz_s = geometry % ng*n_s*(4+geometry % ng-1) ! define # nonzero sides
+    nz_i = geometry % ng*n_i*(5+geometry % ng-1) ! define # nonzero interiors
     loss_matrix % nz = nz_c+nz_s+nz_i ! total number of non-zero entries
     loss_matrix % n = geometry % ng*geometry % nx*geometry % ny ! order of matrix
  
