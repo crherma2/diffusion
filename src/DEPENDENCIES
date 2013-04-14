@@ -5,13 +5,20 @@ global.o: matrix_header.o
 intialize.o: geometry_header.o
 intialize.o: global.o
 
+loss.o: geometry_header.o
 loss.o: global.o
+loss.o: material_header.o
 
 main.o: intialize.o
 main.o: loss.o
 main.o: matrix.o
+main.o: prod.o
 main.o: timing.o
 
 matrix.o: linearsolver.o
+
+prod.o: geometry_header.o
+prod.o: global.o
+prod.o: material_header.o
 
 timing.o: constants.o

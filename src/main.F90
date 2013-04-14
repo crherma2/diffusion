@@ -5,6 +5,7 @@ program main
   use initialize, only: initialize_run
   use loss,       only: create_lossmatrix
   use matrix,     only: test_matrix
+  use prod,       only: create_prodmatrix
 
 !-program options
 
@@ -19,5 +20,8 @@ program main
 
   ! create loss matrix
   call create_lossmatrix()
+
+  ! create prod matrix
+  call create_prodmatrix()
 
 end program main
