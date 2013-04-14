@@ -46,8 +46,6 @@ contains
     nz_i = geometry % ng*n_i*(5+geometry % ng-1) ! define # nonzero interiors
     loss_matrix % nz = nz_c+nz_s+nz_i ! total number of non-zero entries
     loss_matrix % n = geometry % ng*geometry % nx*geometry % ny ! order of matrix
- 
-    PRINT*, loss_matrix % nz
 
     ! allocate matrix dimensions
     call allocate_matrix(loss_matrix)
@@ -223,7 +221,7 @@ contains
       end do INSCATTER
   
     end do ROWS 
-    PRINT*,'counter', counter 
+
   end subroutine build_lossmatrix
 
   subroutine matrix_to_indices(irow,i,j,g)

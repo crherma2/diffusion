@@ -28,10 +28,9 @@ contains
 
 !---begin execution
 
+    ! set matrix dimensions
     prod_matrix % n = geometry % ng*geometry % nx*geometry % ny ! order of matrix
     prod_matrix % nz = prod_matrix % n*geometry % ng ! total number of nonzeros
-
-    PRINT*, prod_matrix % nz
 
     ! allocate matrix dimensions
     call allocate_matrix(prod_matrix)
@@ -91,7 +90,7 @@ contains
       end do FISSION
   
     end do ROWS 
-    PRINT*,'counter', counter 
+
   end subroutine build_prodmatrix
 
   subroutine matrix_to_indices(irow,i,j,g)

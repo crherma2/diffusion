@@ -47,7 +47,7 @@ contains
     call DS2Y(loss_matrix % n, loss_matrix % nz, loss_matrix % row, &
                          loss_matrix % col, loss_matrix % val, 0)
 
-    call DS2Y(prod_matrix % n, prod_matrix % nz, loss_matrix % row, &
+    call DS2Y(prod_matrix % n, prod_matrix % nz, prod_matrix % row, &
                          prod_matrix % col, prod_matrix % val, 0)
 
     ! allocate temporary variables
@@ -74,6 +74,7 @@ contains
                 prod_matrix % row, prod_matrix % col, &
                 prod_matrix % val, 0) ! F*phi sparse matrix multiplication
 
+
     ! linear solver parameters
     maxiter = 1000
     
@@ -92,9 +93,9 @@ contains
       call gmres(loss_matrix % n, loss_matrix % nz, loss_matrix % row, &
                  loss_matrix % col, loss_matrix % val, phinew, sold, &
                  itol, err, maxiter, iter)      
- 
-     ! calculate new fission source
-     call DSMV(prod_matrix % n, phinew, snew, prod_matrix % nz, &
+
+      ! calculate new fission source
+      call DSMV(prod_matrix % n, phinew, snew, prod_matrix % nz, &
                 prod_matrix % row, prod_matrix % col, &
                 prod_matrix % val, 0)
 
@@ -104,9 +105,9 @@ contains
       ! check convergence criteria     
       errork = abs(1.0_8-(kold/knew))
       errorf = maxval(abs(1.0_8-(phiold/phinew)))
-      
+
       ! print out information
-      print*, i, knew, errork, errorf 
+      print*, i, knew, errork, errorf, iter 
       
       ! check tolerances
       if(errork < ktol .and. errorf < ftol) then
@@ -114,11 +115,13 @@ contains
         keff = knew
         allocate(flux(prod_matrix % n))
         flux = phinew
+        write(17,*) flux
         return
       end if
                
     end do    
- 
+
+    ! if this is reached max power iterations hit 
     print*, 'Run did not converge.'
     stop
 

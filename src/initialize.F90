@@ -81,13 +81,11 @@ contains
     do i = 1,size_mat
       call allocate_mat(material(i),geometry % ng)
       material(i) % xs_tot   = material_(i) % totalxs
-      material(i) % xs_scat  = reshape(material_(i) % scattxs, (/geometry % &
-                                                                 ng, geometry &
-                                                                 % ng/))
+      material(i) % xs_scat  = reshape(material_(i) % scattxs, &
+                                      (/geometry % ng, geometry % ng/))
       material(i) % xs_nufis = material_(i) % nfissxs
       material(i) % chi      = material_(i) % chi
       material(i) % difco    = material_(i) % diffcof
-      PRINT*, material(i) % xs_tot
    end do
 
    ! read in tolerances

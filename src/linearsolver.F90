@@ -27,19 +27,20 @@ contains
     integer :: ierr                  ! error code
     integer :: lenw                  ! length of rwork
     integer :: leniw                 ! length of iwork
+    integer :: nsave = 20           ! vectors to orthogonalize with
     integer, allocatable :: iwork(:) ! work vector for integer
     real(8), allocatable :: rwork(:) ! working vector for real
 
 !---begin execution
 
     ! create temp working vectors for GMRES (see dslugm.f for details)
-    lenw = 131 + 18*n + nnz
-    leniw = 32 + 5*n + nnz
+    lenw =  1 + n*(nsave+7) + nsave*(nsave+3) + nnz 
+    leniw = 32 + 4*n + nnz
     allocate(rwork(lenw))
     allocate(iwork(leniw))
 
     ! solve matrix with GMRES
-    call DSLUGM(n, b, x, nnz, row, col, val, 0, n, 0, tol, maxiter, iter, &
+    call DSLUGM(n, b, x, nnz, row, col, val, 0, nsave, 0, tol, maxiter, iter, &
                 err, ierr, 0, rwork, lenw, iwork, leniw)
 
     ! return allocated memory

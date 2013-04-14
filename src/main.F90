@@ -5,7 +5,6 @@ program main
   use eigenval,   only: solve_eigenval
   use initialize, only: initialize_run
   use loss,       only: create_lossmatrix
-  use matrix,     only: test_matrix
   use prod,       only: create_prodmatrix
 
 !-program options
@@ -14,8 +13,6 @@ program main
 
 !-begin execution
 
-  call test_matrix()
-  
   ! initialize input
   call initialize_run()  
 
