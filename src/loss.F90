@@ -178,7 +178,7 @@ contains
           nm => material(nmatid)
           
           ! calculate diffusion coupling coefficient for neighbor
-          dtilda = -(2.0_8*m % difco(g)*nm % difco(g))/ &
+          dtilda = (2.0_8*m % difco(g)*nm % difco(g))/ &
                     (du*m % difco(g) + ndu*nm % difco(g)) 
           
           ! bank in temporary diagonal term
