@@ -1,4 +1,5 @@
 eigenval.o: global.o
+eigenval.o: linearsolver.o
 
 global.o: geometry_header.o
 global.o: material_header.o
