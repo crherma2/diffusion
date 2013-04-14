@@ -12,9 +12,19 @@ module global
   
 !-variables
 
+  ! object variables
   type(geometry_type) :: geometry 
   type(material_type), allocatable, target :: material(:)
   type(matrix_type) :: loss_matrix
   type(matrix_type) :: prod_matrix
+ 
+  ! solver tolerances
+  real(8) :: ktol ! eigenvalue tolerance
+  real(8) :: ftol ! flux tolerance
+  real(8) :: itol ! inner linear solver tolerance
+  
+  ! results
+  real(8) :: keff
+  real(8), allocatable :: flux(:)
 
 end module global

@@ -1,3 +1,5 @@
+eigenval.o: global.o
+
 global.o: geometry_header.o
 global.o: material_header.o
 global.o: matrix_header.o
@@ -9,6 +11,7 @@ loss.o: geometry_header.o
 loss.o: global.o
 loss.o: material_header.o
 
+main.o: eigenval.o
 main.o: intialize.o
 main.o: loss.o
 main.o: matrix.o

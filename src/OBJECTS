@@ -1,5 +1,6 @@
 objects = \
 constants.o \
+eigenval.o \
 geometry_header.o \
 global.o \
 initialize.o \

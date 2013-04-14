@@ -27,7 +27,7 @@
   <variable name="geometry_" tag="geometry" type="geometry_xml" />
   <variable name="material_" tag="material" type="material_xml" dimension="1" />
   <variable name="ktol_"     tag="ktol"     type="double" default="1.e-8" />
-  <variable name="stol_"     tag="stol"     type="double" default="1.e-6" />
+  <variable name="ftol_"     tag="ftol"     type="double" default="1.e-6" />
   <variable name="itol_"     tag="itol"     type="double" default="1.e-10" />
 
 </template>

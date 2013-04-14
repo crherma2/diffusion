@@ -23,6 +23,9 @@ contains
     
     use geometry_header, only: allocate_geom
     use global,          only: geometry, material
+    use global,          only: ktol
+    use global,          only: ftol
+    use global,          only: itol
     use material_header, only: allocate_mat
     use xml_data_input_t
   
@@ -86,6 +89,11 @@ contains
       material(i) % difco    = material_(i) % diffcof
       PRINT*, material(i) % xs_tot
    end do
+
+   ! read in tolerances
+   ktol = ktol_
+   ftol = ftol_
+   itol = itol_
 
   end subroutine read_input
 
