@@ -22,7 +22,9 @@ contains
     real(8) :: b(3)   ! right hand side vector
     real(8) :: x(3)   ! solution vector
     real(8) :: tol = 1.e-10_8 ! linear tolerance of GMRES solver
-    integer :: iter=100 ! number of iterations that GMRES took
+    integer :: iter  ! number of iterations that GMRES took
+    integer :: maxiter = 100
+    real(8) :: err
 
 !---begin execution
 
@@ -63,7 +65,7 @@ contains
     x = 1.0_8
 
     ! solve matrix
-    call gmres(N, NNZ, row, col, val, x, b, tol, iter)
+    call gmres(N, NNZ, row, col, val, x, b, tol, err, maxiter, iter)
 
     ! print answer
     print *, 'Solution is:'
