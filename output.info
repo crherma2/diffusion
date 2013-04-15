@@ -1,0 +1,11 @@
+Output Information:
+
+- Title block for code with author?
+- Column Titles for iteration output
+- Formatted output for iteration output
+- GNUPLOT output file (2-D matrix, 1-D vector)
+- Matrix of currents (for each element print sides 1,2,3,4 --> so n x 4)
+- Print final results after iteration output
+	- Build Time
+	- Solver Time
+	- Converged K-eff

@@ -28,7 +28,6 @@ contains
 !---local variables
 
     integer :: i ! iteration index
-    integer :: iseed ! seed value for random number
     integer :: maxiter
     integer :: iter
     real(8) :: errork
@@ -57,17 +56,11 @@ contains
     allocate(snew(prod_matrix % n))
 
     ! configure random number generator
-!    iseed = 7
-!    call random_seed(PUT = (/iseed/))
+    call random_seed()
 
     ! guess values
-!    call random_number(knew)
-!    call random_number(phinew)
-  
-!    PRINT*, knew
-!    PRINT*, phinew
-    knew = 1.0_8
-    phinew = 1.0_8 
+    call random_number(knew)
+    call random_number(phinew)
    
     ! calcluate fission source
     call DSMV(prod_matrix % n, phinew, snew, prod_matrix % nz, &
