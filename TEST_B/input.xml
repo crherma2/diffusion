@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<input>
+
+<!-- Definition of Geometry -->
+  <geometry>
+    <nx>3</nx>
+    <ny>1</ny>
+    <ng>2</ng>
+    <mat>
+         1 2 1
+    </mat>
+    <xgrid> 0.2 1.0 0.2 </xgrid>
+    <ygrid> 1 </ygrid>
+    <nnx> 2 10 2 </nnx>
+    <nny> 1 </nny>
+    <bc> 1.0 1.0 1.0 1.0 </bc>
+  </geometry>
+
+<!-- Defition of Materials -->
+  <material uid="1">
+    <totalxs> 0.2 1.1 </totalxs>
+    <scattxs> 0.17 0.03 0.0 1.1 </scattxs>
+    <nfissxs> 0.0 0.0 </nfissxs>
+    <chi> 0.0 0.0 </chi>
+    <diffcof> 1.66666667 0.30303030 </diffcof>
+  </material>
+
+  <material uid="2">
+    <totalxs> 0.2 1.0 </totalxs>
+    <scattxs> 0.185 0.015 0.0 0.9 </scattxs>
+    <nfissxs> 0.0 0.17 </nfissxs>
+    <chi> 1.0 0.0 </chi>
+    <diffcof> 1.66666667 0.33333333 </diffcof>
+  </material>
+
+<!-- Solver Tolerances -->
+  <ktol> 0.001 </ktol>
+  <ftol> 0.001 </ftol>
+
+</input>
