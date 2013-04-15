@@ -8,8 +8,8 @@
     <component name="ny" type="integer" />
     <component name="ng" type="integer" />
     <component name="mat" type="integer-array" />
-    <component name="xgrid" type="integer-array" />
-    <component name="ygrid" type="integer-array" />
+    <component name="xgrid" type="real-array" />
+    <component name="ygrid" type="real-array" />
     <component name="nnx" type="integer-array" />
     <component name="nny" type="integer-array" />
     <component name="bc" type="double-array" />

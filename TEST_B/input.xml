@@ -10,7 +10,7 @@
          1 2 1
     </mat>
     <xgrid> 0.2 1.0 0.2 </xgrid>
-    <ygrid> 1 </ygrid>
+    <ygrid> 1.0 </ygrid>
     <nnx> 2 10 2 </nnx>
     <nny> 1 </nny>
     <bc> 1.0 1.0 1.0 1.0 </bc>
