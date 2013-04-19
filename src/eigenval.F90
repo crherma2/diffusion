@@ -62,6 +62,15 @@ contains
     call random_number(knew)
     call random_number(phinew)
    
+    ! output write values to file
+    open(file='initial',unit=12)
+    write(12,*) 'initial k_eff: ',knew
+    write(12,*) 'initial fluxes: '
+    do i=1, loss_matrix % n
+      write(12,*) phinew(i)
+    end do
+    close(12)
+ 
     ! calcluate fission source
     call DSMV(prod_matrix % n, phinew, snew, prod_matrix % nz, &
                 prod_matrix % row, prod_matrix % col, &
@@ -70,7 +79,11 @@ contains
 
     ! linear solver parameters
     maxiter = 1000
-    
+
+    ! open file for output of keff, iter and error
+    open(file='keff',unit=14)
+    write(14,*) 'iteration', 'keff', 'error_keff', 'error_flux'
+
     ! begin power iterations
     do i = 1, 10000
 
@@ -101,6 +114,8 @@ contains
 
       ! print out information
       print*, i, knew, errork, errorf, iter 
+     
+      write(14,*) i, knew, errork, errorf
       
       ! check tolerances
       if(errork < ktol .and. errorf < ftol) then
@@ -108,11 +123,14 @@ contains
         keff = knew
         allocate(flux(prod_matrix % n))
         flux = phinew
-        write(17,*) flux
+        write(14,*) 'End k-effective value: ', keff
         return
       end if
                
     end do    
+  
+    ! close the opend file
+    close(14)
 
     ! if this is reached max power iterations hit 
     print*, 'Run did not converge.'
