@@ -65,8 +65,8 @@ contains
                                                  geometry % nyc/))
     
     ! calculate fine mesh with
-    geometry % dx = geometry % gridx / geometry % nnx
-    geometry % dy = geometry % gridy / geometry % nny
+    geometry % dx = geometry % gridx / dble(geometry % nnx)
+    geometry % dy = geometry % gridy / dble(geometry % nny)
 
     ! read in boundary conditions
     geometry % bc = geometry_ % bc

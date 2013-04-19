@@ -26,5 +26,6 @@ module global
   ! results
   real(8) :: keff
   real(8), allocatable :: flux(:)
+  real(8), allocatable :: curr(:,:)
 
 end module global

@@ -9,5 +9,6 @@ loss.o \
 main.o \
 material_header.o \
 matrix_header.o \
+output.o \
 prod.o \
 timing.o

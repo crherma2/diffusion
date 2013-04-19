@@ -15,6 +15,7 @@ loss.o: material_header.o
 main.o: eigenval.o
 main.o: intialize.o
 main.o: loss.o
+main.o: output.o
 main.o: prod.o
 main.o: timing.o
 
