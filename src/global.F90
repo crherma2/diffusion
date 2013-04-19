@@ -5,13 +5,18 @@ module global
   use geometry_header, only: geometry_type
   use material_header, only: material_type
   use matrix_header,   only: matrix_type
+  use timing,          only: Timer
+ 
 !-module options
 
   implicit none
   save
   
 !-variables
-
+  
+  ! timing
+  type(Timer) :: runtime
+  
   ! object variables
   type(geometry_type) :: geometry 
   type(material_type), allocatable, target :: material(:)

@@ -4,6 +4,7 @@ eigenval.o: linearsolver.o
 global.o: geometry_header.o
 global.o: material_header.o
 global.o: matrix_header.o
+global.o: timing.o
 
 intialize.o: geometry_header.o
 intialize.o: global.o
