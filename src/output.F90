@@ -59,6 +59,9 @@ contains
     ! normalize the flux
     flux = flux/flux_sum
 
+    ! write out mesh file for gnuplot if ny > 2
+    if (geometry % ny > 2) call write_gnuplot_mesh()
+
   end subroutine normalize_flux
 
   subroutine surface_currents()
@@ -227,6 +230,39 @@ contains
     close(18)
 
   end subroutine write_results
+
+  subroutine write_gnuplot_mesh()
+
+  use global, only: flux
+  use global, only: geometry
+
+!---local variables
+    integer :: i ! iteration counter for x
+    integer :: j ! iteration counter for y
+    real(8), allocatable :: flux_mat(:,:,:)
+
+    ! open up files
+    open(file='flux1.dat',unit=30)
+    open(file='flux2.dat',unit=31)
+
+    ! reshape flux into matrix
+    allocate(flux_mat(geometry % nx, geometry % ny, geometry % ng))
+    flux_mat = reshape(flux,(/geometry % nx, geometry % ny, geometry % ng/))
+
+    ! loop around rows
+    do i = 1, size(flux_mat,1)
+      write(30,*) (flux_mat(i,j,1),j=1,size(flux_mat,2))
+      write(31,*) (flux_mat(i,j,2),j=1,size(flux_mat,2))
+    end do
+
+    ! deallocate variables
+    deallocate(flux_mat)
+
+    ! close files
+    close(30)
+    close(31)
+
+  end subroutine write_gnuplot_mesh 
 
   subroutine matrix_to_indices(irow,i,j,g)
 
