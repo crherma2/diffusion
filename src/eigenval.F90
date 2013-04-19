@@ -64,10 +64,10 @@ contains
    
     ! output write values to file
     open(file='initial',unit=12)
-    write(12,*) 'initial k_eff: ',knew
+    write(12,'(A,2X,1PE13.6)') 'initial k_eff: ',knew
     write(12,*) 'initial fluxes: '
     do i=1, loss_matrix % n
-      write(12,*) phinew(i)
+      write(12,'(1PE13.6)') phinew(i)
     end do
     close(12)
  
@@ -82,7 +82,9 @@ contains
 
     ! open file for output of keff, iter and error
     open(file='keff',unit=14)
-    write(14,*) 'iteration', 'keff', 'error_keff', 'error_flux'
+    write(14,100) 'iteration', 'keff', 'error_keff', 'error_flux'
+    write(*,100) 'iteration', 'keff', 'error_keff', 'error_flux'
+ 100 format(A,T15,A,T30,A,T45,A)
 
     ! begin power iterations
     do i = 1, 10000
@@ -113,17 +115,17 @@ contains
       errorf = maxval(abs(1.0_8-(phiold/phinew)))
 
       ! print out information
-      print*, i, knew, errork, errorf, iter 
-     
-      write(14,*) i, knew, errork, errorf
-      
+      write(*,101) i, knew, errork, errorf 
+      write(14,101) i, knew, errork, errorf
+ 101  format(I0,T15,1PE13.6,T30,1PE13.6,T45,1PE13.6)
+
       ! check tolerances
       if(errork < ktol .and. errorf < ftol) then
         print*, 'Eigenvalue converged normally.'
         keff = knew
         allocate(flux(prod_matrix % n))
         flux = phinew
-        write(14,*) 'End k-effective value: ', keff
+        write(14,'(A,2X,1PE13.6)') 'End k-effective value: ', keff
         return
       end if
                

@@ -219,8 +219,8 @@ contains
 
     ! loop around size of rows
     do i = 1, size(flux)
-      write(15,*) flux(i)
-      write(18,*) curr(i,1), curr(i,2), curr(i,3), curr(i,4)
+      write(15,'(1PE13.6)') flux(i)
+      write(18,'(4(1PE13.6,1X))') curr(i,1), curr(i,2), curr(i,3), curr(i,4)
     end do
 
     close(15)
