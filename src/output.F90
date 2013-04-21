@@ -11,14 +11,22 @@ contains
 !-outer routine
 
   subroutine post_process()
-  
+ 
+    use global,  only: geometry
+ 
     ! call the normalize flux subroutine
     call normalize_flux()
 
     ! call surface currents
     call surface_currents()
 
+    ! write out mesh file for gnuplot if ny > 2
     call write_results()
+    if (geometry % ny > 2) then
+      call write_gnuplot_mesh()
+    else
+      call write_gnuplot_1D()
+    end if
 
   end subroutine post_process
 
@@ -59,8 +67,6 @@ contains
     ! normalize the flux
     flux = flux/flux_sum
 
-    ! write out mesh file for gnuplot if ny > 2
-    if (geometry % ny > 2) call write_gnuplot_mesh()
 
   end subroutine normalize_flux
 
@@ -230,6 +236,63 @@ contains
     close(18)
 
   end subroutine write_results
+
+  subroutine write_gnuplot_1D()
+
+  use global, only: flux, curr
+  use global, only: geometry
+
+!---local variables
+    integer :: i ! iteration counter for x
+    integer :: j ! iteration counter for y
+    real(8), allocatable :: flux_mat(:,:,:)
+    real(8), allocatable :: curr_mat(:,:,:)
+    real(8), allocatable :: curr2temp(:,:,:)
+
+    ! open up files
+    open(file='flux1.dat',unit=35)
+    open(file='flux2.dat',unit=36)
+    open(file='curr1.dat',unit=37)
+    open(file='curr2.dat',unit=38)
+ 
+
+    ! allocate temp data vars 
+    allocate(flux_mat(geometry % nx, geometry % ny, geometry % ng))
+    allocate(curr_mat(geometry % nx + 1, geometry % ny, geometry % ng))
+    allocate(curr2temp(geometry % nx, geometry % ny, geometry % ng))
+
+    ! reshape all
+    flux_mat = reshape(flux,(/geometry % nx, geometry % ny, geometry % ng/))
+    curr_mat(1:geometry % nx,:,:) = reshape(curr(:,1), &
+                         (/geometry % nx, geometry % ny, geometry % ng/))
+    curr2temp = reshape(curr(:,2),(/geometry % nx, geometry % ny, geometry % ng/))
+
+    ! append last surface on right
+    curr_mat(geometry % nx + 1,:,1) = curr2temp(geometry % nx,:,1)
+    curr_mat(geometry % nx + 1,:,2) = curr2temp(geometry % nx,:,2)
+
+    ! loop around rows
+    do i = 1, geometry % nx
+      write(35,'(1PE13.6)') flux_mat(i,:,1)
+      write(36,'(1PE13.6)') flux_mat(i,:,2)
+      write(37,'(4(1PE13.6,1X))') curr_mat(i,:,1)
+      write(38,'(4(1PE13.6,1X))') curr_mat(i,:,2)
+    end do
+    write(37,'(4(1PE13.6,1X))') curr_mat(geometry % nx + 1,:,1)
+    write(38,'(4(1PE13.6,1X))') curr_mat(geometry % nx + 1,:,2)
+
+    ! deallocate variables
+    deallocate(flux_mat)
+    deallocate(curr_mat)
+    deallocate(curr2temp)
+
+    ! close files
+    close(35)
+    close(36)
+    close(37)
+    close(38)
+
+  end subroutine write_gnuplot_1D
 
   subroutine write_gnuplot_mesh()
 
