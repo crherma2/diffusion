@@ -79,7 +79,6 @@ contains
     integer :: nic ! neighbor coarse mesh index x
     integer :: njc ! neighbor coarse mesh index y
     real(8) :: dtilda ! diffusion coupling term
-    real(8) :: pm ! plus minus multiplier
     real(8) :: diag ! banking all materials for diagonal
     real(8) :: du ! cell width
     real(8) :: ndu ! neighbor cell width 
@@ -112,7 +111,6 @@ contains
         if (s == 1) then ! minus x direction
           if (i == 1) then ! check if you are on left boundary
             bound = .true.
-            pm = -1.0_8
           else
             bound = .false.
             ni = i - 1 ! neighbor defined index x direction to left
@@ -124,7 +122,6 @@ contains
         else if (s == 2) then ! plus x direction
           if (i == geometry % nx) then ! check if you are on right boundary
             bound = .true.
-            pm = 1.0_8
           else
             bound = .false.
             ni = i + 1 ! neighbor defined index x direction to the right
@@ -136,7 +133,6 @@ contains
         else if (s == 3) then ! minus y direction
           if (j == 1) then ! check if you are on the bottom boundary
             bound = .true.
-            pm = -1.0_8
           else
             bound = .false.
             ni = i ! neighbor defiend index x direction to bottom
@@ -148,7 +144,6 @@ contains
         else if (s == 4) then ! plus y direction
           if (j == geometry % ny) then ! check if you are on top boundary
             bound = .true.
-            pm = 1.0_8
           else
             bound = .false.
             ni = i ! neighbor defined index x direction to top
@@ -168,7 +163,7 @@ contains
                    4.0_8*m % difco(g)*(1.0_8 + geometry % bc(s)))
           
           ! bank in temporary diagonal term
-          diag = diag + pm*(dtilda/du)
+          diag = diag + (dtilda/du)
         else
           
           ! get neighbor material
@@ -177,7 +172,7 @@ contains
           
           ! calculate diffusion coupling coefficient for neighbor
           dtilda = (2.0_8*m % difco(g)*nm % difco(g))/ &
-                    (du*m % difco(g) + ndu*nm % difco(g)) 
+                    (du*nm % difco(g) + ndu*m % difco(g)) 
           
           ! bank in temporary diagonal term
           diag = diag + (dtilda/du)
